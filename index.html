@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibonacci Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+        .form-container {
+            margin-bottom: 20px;
+        }
+        .chart-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fibonacci Calculator</h1>
+    <div class="form-container">
+        <label for="number">Enter a number:</label>
+        <input type="number" id="number" min="1" value="10">
+        <button onclick="calculateFibonacci()">Calculate</button>
+    </div>
+    <div class="chart-container">
+        <h2>Result:</h2>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function calculateFibonacci() {
+            const number = document.getElementById('number').value;
+
+            fetch('fibonacci.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `n=${number}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                const resultDiv = document.getElementById('result');
+                resultDiv.innerHTML = `<p>Fibonacci Sequence: ${data.join(', ')}</p>`;
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
