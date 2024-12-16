@@ -1,0 +1,21 @@
+# File temporanei di sistema
+.DS_Store
+Thumbs.db
+
+# File del server web e cache
+*.log
+*.cache
+*.tmp
+
+# Cartelle di backup o temporanee
+backup/
+tmp/
+logs/
+
+# File personali o configurazioni locali
+.env
+*.bak
+
+# File generati dagli editor di testo/IDE
+.idea/
+.vscode/
